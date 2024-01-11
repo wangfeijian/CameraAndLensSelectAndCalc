@@ -4,11 +4,13 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 bin/
+Apps/
 
 # Other files and folders
 .settings/
 .vs/
 .idea/
+.*/.idea/
 .*/.vs/
 */packages/
 */*/bin/

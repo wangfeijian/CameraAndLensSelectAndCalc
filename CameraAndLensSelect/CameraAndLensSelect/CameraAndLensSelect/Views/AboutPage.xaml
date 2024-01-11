@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CameraAndLensSelect.Views.AboutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
+    Title="{Binding Title}"
+    Background="{AppThemeBinding Light=White,
+                                 Dark=Black}">
+
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ScrollView>
+            <StackLayout
+                Padding="30,24,30,24"
+                Orientation="Vertical"
+                Spacing="10">
+                <Label
+                    FontSize="Title"
+                    Text="相机镜头选型软件  V1.1"
+                    TextColor="{AppThemeBinding Light=Black,
+                                                Dark=White}" />
+                <Label
+                    FontSize="Large"
+                    Text="WangFeijian 王飞箭"
+                    TextColor="{AppThemeBinding Light=Black,
+                                                Dark=White}" />
+                <Label
+                    Padding="0,0,0,0"
+                    FontSize="16"
+                    Text="此软件为工业相机和镜头选型工具，通过此工具，可以方便的核算相机镜头的相关参数！此软件核算出来的所有参数，都是根据理论值计算所得，只能作为参考使用。如果你想将核算出来的参数用在自己的项目中，请自己慎重核对后再使用。最后，如果你觉得此软件对你有帮助，也可以截图扫码给我一点打赏哦！！"
+                    TextColor="{AppThemeBinding Light=Black,
+                                                Dark=White}" />
+                <Line BackgroundColor="{StaticResource Accent}" HeightRequest="1" />
+                <Image
+                    Margin="5"
+                    Source="pay_for_me_wechat.jpg"
+                    VerticalOptions="Center"
+                    WidthRequest="300" />
+                <Line BackgroundColor="{StaticResource Accent}" HeightRequest="1" />
+                <Image
+                    Margin="5"
+                    Source="pay_for_me_alipay.jpg"
+                    VerticalOptions="Center"
+                    WidthRequest="300" />
+                <Line BackgroundColor="{StaticResource Accent}" HeightRequest="1" />
+                <Button
+                    Margin="0,10,0,0"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding OpenWebCommand}"
+                    Text="访问我的Github"
+                    TextColor="White" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

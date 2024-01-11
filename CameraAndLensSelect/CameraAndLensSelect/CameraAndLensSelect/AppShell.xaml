@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CameraAndLensSelect.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CameraAndLensSelect.Views"
+    Title="CameraAndLensSelect">
+
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+        
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent
+            Title="关于"
+            ContentTemplate="{DataTemplate local:AboutPage}"
+            Icon="icon_about.png"
+            Route="AboutPage" />
+        <ShellContent
+            Title="计算"
+            ContentTemplate="{DataTemplate local:CalcPage}"
+            Icon="icon_calculator.png"
+            Route="CalcPage" />
+        <ShellContent
+            Title="相机"
+            ContentTemplate="{DataTemplate local:CameraListPage}"
+            Icon="icon_camera.png"
+            Route="CameraListPage" />
+        <ShellContent
+            Title="镜头"
+            ContentTemplate="{DataTemplate local:LensListPage}"
+            Icon="icon_lens.png"
+            Route="LensListPage" />
+    </TabBar>
+</Shell>

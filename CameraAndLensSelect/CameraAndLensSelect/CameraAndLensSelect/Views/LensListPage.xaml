@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CameraAndLensSelect.Views.LensListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
+     Background="{AppThemeBinding Light=White, Dark=Black}"
+    Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:LensListViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Margin="20,0">
+        <SearchBar
+            x:Name="SearchItem"
+            Margin="5,0"
+            FontSize="Small"
+            CancelButtonColor="{AppThemeBinding Light=Black,
+                                                Dark=White}"
+            PlaceholderColor="{AppThemeBinding Light=Black,
+                                               Dark=White}"
+            TextColor="{AppThemeBinding Light=Black,
+                                               Dark=White}"
+            Placeholder="输入字符筛选镜头"
+            SearchCommand="{Binding FilterCommand}"
+            SearchCommandParameter="{Binding Source={x:Reference SearchItem}, Path=Text}"
+            TextChanged="OnTextChanged" />
+        <CollectionView
+            x:Name="LensCollection"
+            ItemsSource="{Binding LensData}"
+            SelectionChanged="OnSelectionChanged"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        ColumnDefinitions="*,1.5*,*,*"
+                        HeightRequest="85"
+                        RowDefinitions="*,1.5*,*">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Text="{Binding Vendors}"
+                            TextColor="Blue" />
+                        <Label
+                            Grid.Column="1"
+                            Grid.ColumnSpan="3"
+                            FontSize="16"
+                            Text="{Binding Model}" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="Small"
+                            Text="匹配芯片："
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontSize="Small"
+                            Text="{Binding MatchingChip}"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            FontSize="Small"
+                            Text="工作距离："
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="3"
+                            FontSize="Small"
+                            Text="{Binding WorkingDistance}"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="2"
+                            FontSize="Small"
+                            Text="焦距：" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            FontSize="Small"
+                            Text="{Binding FocalLength}" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            FontSize="Small"
+                            Text="接口：" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="3"
+                            FontSize="Small"
+                            Text="{Binding Interface}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

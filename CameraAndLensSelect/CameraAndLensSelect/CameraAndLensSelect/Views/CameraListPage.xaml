@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CameraAndLensSelect.Views.CameraListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
+    Title="{Binding Title}"
+    Background="{AppThemeBinding Light=White,
+                                 Dark=Black}">
+    <ContentPage.BindingContext>
+        <vm:CameraListViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Margin="20,0">
+        <SearchBar
+             
+            x:Name="SearchItem"
+            Margin="5,0"
+            CancelButtonColor="{AppThemeBinding Light=Black,
+                                                Dark=White}"
+            FontSize="Small"
+            Placeholder="输入字符筛选相机"
+            PlaceholderColor="{AppThemeBinding Light=Black,
+                                               Dark=White}"
+            SearchCommand="{Binding FilterCommand}"
+            SearchCommandParameter="{Binding Source={x:Reference SearchItem}, Path=Text}"
+            TextChanged="OnTextChanged"
+            TextColor="{AppThemeBinding Light=Black,
+                                        Dark=White}" />
+        <CollectionView
+            x:Name="CameraCollection"
+            ItemsSource="{Binding CameraData}"
+            SelectionChanged="OnSelectionChanged"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        ColumnDefinitions="1.5*,*,0.2*,*,*"
+                        HeightRequest="150"
+                        RowDefinitions="*,*,*,*,*,*">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Text="{Binding Vendors}"
+                            TextColor="Blue" />
+                        <Label
+                            Grid.Column="1"
+                            Grid.ColumnSpan="4"
+                            FontSize="16"
+                            Text="{Binding Model}" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="Small"
+                            Text="{Binding Shutter}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontSize="Small"
+                            Text="{Binding ChipSize}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="3"
+                            FontSize="Small"
+                            Text="像元大小：" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="4"
+                            FontSize="Small"
+                            Text="{Binding PixelSize}" />
+                        <Label
+                            Grid.Row="2"
+                            FontSize="Small"
+                            Text="像素宽度：" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            FontSize="Small"
+                            Text="{Binding PixelWidth}" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="3"
+                            FontSize="Small"
+                            Text="像素高度：" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="4"
+                            FontSize="Small"
+                            Text="{Binding PixelHeight}" />
+                        <Label
+                            Grid.Row="3"
+                            FontSize="Small"
+                            Text="芯片宽度：" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            FontSize="Small"
+                            Text="{Binding ChipWidth}" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="3"
+                            FontSize="Small"
+                            Text="芯片高度：" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="4"
+                            FontSize="Small"
+                            Text="{Binding ChipHeight}" />
+                        <Label
+                            Grid.Row="4"
+                            FontSize="Small"
+                            Text="帧率：" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            FontSize="Small"
+                            Text="{Binding Frame}" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="3"
+                            FontSize="Small"
+                            Text="颜色：" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="4"
+                            FontSize="Small"
+                            Text="{Binding Color}" />
+                        <Label
+                            Grid.Row="5"
+                            FontSize="Small"
+                            Text="接口：" />
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            FontSize="Small"
+                            Text="{Binding Interface}" />
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="3"
+                            FontSize="Small"
+                            Text="像素：" />
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="4"
+                            FontSize="Small"
+                            Text="{Binding Pixels}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

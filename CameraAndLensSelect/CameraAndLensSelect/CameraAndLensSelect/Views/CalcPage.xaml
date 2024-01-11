@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CameraAndLensSelect.Views.CalcPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:command="clr-namespace:CameraAndLensSelect.Services"
+    xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
+    Title="{Binding Title}"
+    Background="{AppThemeBinding Light=White,
+                                 Dark=Black}">
+    <ContentPage.BindingContext>
+        <vm:CalcViewModel />
+    </ContentPage.BindingContext>
+    <RelativeLayout>
+        <Image Source="camera.png" />
+        <!--<Entry
+            AbsoluteLayout.LayoutBounds="200,0,150,40"
+            FontSize="Small"
+            Placeholder="相机型号" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="200,30,150,40"
+            FontSize="Small"
+            Placeholder="镜头焦距" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="200,60,150,40"
+            FontSize="Small"
+            Placeholder="镜头型号" />
+        <Label
+            AbsoluteLayout.LayoutBounds="205,100,150,40"
+            FontSize="Small"
+            Text="相机芯片大小：" />
+        <Label
+            AbsoluteLayout.LayoutBounds="205,125,150,40"
+            FontSize="Small"
+            Text="镜头匹配芯片：" />
+        <Label
+            AbsoluteLayout.LayoutBounds="205,150,150,40"
+            FontSize="Small"
+            Text="镜头工作距离：" />
+        <Button AbsoluteLayout.LayoutBounds="205,180,150,40" Text="计算" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="220,570,80,40"
+            FontSize="Small"
+            Placeholder="视场宽度" />
+        <Label
+            AbsoluteLayout.LayoutBounds="30,380,80,30"
+            FontSize="Small"
+            Text="120" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="40,630,80,40"
+            FontSize="Small"
+            Placeholder="视场高度" />
+        <Label
+            AbsoluteLayout.LayoutBounds="150,300,80,40"
+            FontSize="Small"
+            Text="水平视角" />
+        <Label
+            AbsoluteLayout.LayoutBounds="95,335,80,40"
+            FontSize="Small"
+            Text="垂直视角" />-->
+        <Entry
+            ClearButtonVisibility="WhileEditing"
+            FontSize="11"
+            Placeholder="相机型号"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.5}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.01}"
+            Text="{Binding CameraModel}"
+            TextColor="#2196f3">
+            <Entry.Behaviors>
+                <command:EventToCommandBehavior Command="{Binding CameraSelectCommand}" EventName="Completed" />
+            </Entry.Behaviors>
+        </Entry>
+        <Entry
+            ClearButtonVisibility="WhileEditing"
+            FontSize="11"
+            Placeholder="镜头型号"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.5}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.06}"
+            Text="{Binding LensModel}"
+            TextColor="#2196f3">
+            <Entry.Behaviors>
+                <command:EventToCommandBehavior Command="{Binding LensSelectCommand}" EventName="Completed" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label
+            FontSize="Small"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.51}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.12}"
+            Text="{Binding SelectCamera.ChipSize, StringFormat=相机芯片大小：\{0\}}"
+            TextColor="#2196f3" />
+        <Label
+            FontSize="Small"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.51}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.165}"
+            Text="{Binding SelectLens.MatchingChip, StringFormat=镜头匹配芯片：\{0\}}"
+            TextColor="#2196f3" />
+        <Label
+            FontSize="Small"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.51}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.23}"
+            Text="{Binding SelectLens.WorkingDistance, StringFormat=镜头工作距离：\{0\}}"
+            TextColor="#2196f3" />
+        <Button
+            Command="{Binding ShowDetailCommand}"
+            FontSize="Medium"
+            HeightRequest="45"
+            IsEnabled="{Binding EnableDetail}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.45}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.51}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.27}"
+            Text="显示结果" />
+        <Label
+            FontSize="Small"
+            HeightRequest="40"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.51}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.32}"
+            Text="{Binding ErrorMessage}"
+            TextColor="Red" />
+        <Entry
+            FontSize="Small"
+            HorizontalTextAlignment="Center"
+            Keyboard="Numeric"
+            Placeholder="视场宽度"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.55}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.85}"
+            Text="{Binding ViewCalcWidth}"
+            TextColor="#2196f3"
+            WidthRequest="70">
+            <Entry.Behaviors>
+                <command:EventToCommandBehavior Command="{Binding ViewWidthChangedCommand}" EventName="Completed" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label
+            FontSize="Small"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.11}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.57}"
+            Text="{Binding WorkingDistance}" />
+        <Entry
+            FontSize="Small"
+            HorizontalTextAlignment="Center"
+            Keyboard="Numeric"
+            Placeholder="视场高度"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.05}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.94}"
+            Text="{Binding ViewCalcHeight}"
+            TextColor="#2196f3"
+            WidthRequest="70">
+            <Entry.Behaviors>
+                <command:EventToCommandBehavior Command="{Binding ViewHeightChangedCommand}" EventName="Completed" />
+            </Entry.Behaviors>
+        </Entry>
+        <Entry
+            FontSize="Small"
+            HorizontalTextAlignment="Center"
+            Keyboard="Numeric"
+            Placeholder="放大倍率"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.55}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.94}"
+            Text="{Binding ViewCalcTimes}"
+            TextColor="#2196f3"
+            WidthRequest="70">
+            <Entry.Behaviors>
+                <command:EventToCommandBehavior Command="{Binding ViewTimesChangedCommand}" EventName="Completed" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label
+            FontSize="Small"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.38}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.45}"
+            Text="{Binding HAngle}"
+            TextColor="#fa6806" />
+        <Label
+            FontSize="Small"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.48}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.25}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0.5}"
+            Text="{Binding VAngle}"
+            TextColor="#fa6806" />
+    </RelativeLayout>
+</ContentPage>
